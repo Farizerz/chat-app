@@ -3,6 +3,9 @@ import queryString from 'query-string';
 import io from 'socket.io-client';
 
 import './Chat.css';
+import InfoBar from '../InfoBar/InfoBar.js';
+import Input from '../Input/Input.js';
+import Messages from '../Messages/Messages.js';
 
 let socket;
 
@@ -58,6 +61,8 @@ const Chat = ({ location }) => {
                     onChange={(event) => setMessage(event.target.value)}
                     onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
                 /> */}
+                <Messages messages={messages} />
+                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
         </div>
     )
