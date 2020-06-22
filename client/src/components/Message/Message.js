@@ -2,9 +2,11 @@ import React from 'react';
 
 import './Message.css';
 
+import ReactEmoji from 'react-emoji'
+
 const Message = ({message: { user, text }, name}) => {
     let isSentByCurrentUser = false;
-    let trimmedName = name;
+    var trimmedName = name.trim().toLowerCase();
     //TOBECONTINUED 01:40:33
 
     if(user === trimmedName) {
@@ -17,15 +19,14 @@ const Message = ({message: { user, text }, name}) => {
                 <div className="messageContainer justifyEnd">
                     <p className=" pr-10">{trimmedName}</p>
                     <div className="messageBox backgroundBlue">
-                        <p className="messageText colorWhite" >{text}</p>
+                        <p className="messageText colorWhite" >{ReactEmoji.emojify(text)}</p>
                     </div>
                 </div>
             )
             : (
                 <div className="messageContainer justifyStart">
-                    <p className="sentText">{trimmedName}</p>
                     <div className="messageBox backgroundLight">
-                        <p className="messageText colorDark" >{text}</p>
+                        <p className="messageText colorDark" >{ReactEmoji.emojify(text)}</p>
                     </div>
                     <p className="sentText pl-10">{user}</p>
                 </div>

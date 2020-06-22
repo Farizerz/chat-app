@@ -61,7 +61,7 @@ const Chat = ({ location }) => {
                     onChange={(event) => setMessage(event.target.value)}
                     onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
                 /> */}
-                <Messages messages={messages} />
+                <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
         </div>
