@@ -6,12 +6,14 @@ import './Chat.css';
 import InfoBar from '../InfoBar/InfoBar.js';
 import Input from '../Input/Input.js';
 import Messages from '../Messages/Messages.js';
+import TextContainer from '../TextContainer/TextContainer.js';
 
 let socket;
 
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+    const [users, setUsers] = useState('');
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const ENDPOINT = 'localhost:5000';
@@ -39,7 +41,13 @@ const Chat = ({ location }) => {
         socket.on('message', (message) => {
             setMessages([...messages, message]);
         })
+
+        socket.on("roomData", ({users}) => {
+            setUsers(users);
+        });
+
     }, [messages]);
+
 
     //fungsi untuk send message
     const sendMessage = (event) => {
@@ -64,6 +72,7 @@ const Chat = ({ location }) => {
                 <Messages messages={messages} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
+            <TextContainer users={users} />
         </div>
     )
 }
