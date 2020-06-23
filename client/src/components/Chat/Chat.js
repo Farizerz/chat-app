@@ -46,6 +46,7 @@ const Chat = ({ location }) => {
             setUsers(users);
         });
 
+        return()=>{socket.off()};
     }, [messages]);
 
 
